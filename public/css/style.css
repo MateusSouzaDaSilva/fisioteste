@@ -1,0 +1,93 @@
+/* Reset settings */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+body a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Header */
+
+header {
+    background-color: #C7A6DB;
+    padding: 0;
+}
+
+.header {
+    height: 80px;
+}
+
+.menubar {
+    background-color: #B77ADC;
+    font-weight: bold;
+}
+
+.menubar a {
+    color: black;
+    padding: 5px;
+}
+
+.nav-item img {
+    width: 30px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+
+/* Agendamento */
+
+#tb-agenda {
+    padding:30px 100px;
+}
+
+
+/* Footer */
+
+footer {
+    text-align: center;
+    background-color: #C7A6DB;
+    color: black;
+    padding: 5px;
+    position: absolute; /* Alterado para 'sticky' */
+    bottom: 0;
+    width: 100%;
+    top: auto; /* Define 'top' como 'auto' para iniciar o 'sticky' quando o footer atingir o topo da página */
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+
+
+
+/* .tabelaEditavel {
+    border:solid 1px;
+    width:100%
+}
+
+.tabelaEditavel td {
+    border:solid 1px;
+}
+
+.tabelaEditavel .celulaEmEdicao {
+    padding: 0;
+}
+
+.tabelaEditavel .celulaEmEdicao input[type=text]{
+    width:100%;
+    border:0;
+    background-color:rgb(255,253,210);
+} */
