@@ -52,6 +52,12 @@ header {
     padding:30px 100px;
 }
 
+/* Lista de alunos */
+
+.lista-alunos {
+    background-color: aliceblue;
+}
+
 
 /* Footer */
 
