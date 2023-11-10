@@ -7,7 +7,7 @@
 </div>
 <div class="lista-alunos">
     <div class="aluno">
-        
+        <a href="/lista-alunos/cadastrar" class="btn btn-primary">Cadastrar</a>
     </div>
 </div>
 

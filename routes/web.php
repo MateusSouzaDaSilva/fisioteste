@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlunoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,12 +22,19 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
     Route::get('/', function () {
         return view('welcome');
     })->name('welcome');
+
     Route::get('/lista-alunos', function () {
         return view('lista-alunos');
     })->name('Lista de alunos');
+    
+    Route::get('/lista-alunos/cadastrar', [AlunoController::class,'create'])->name('cadastrar-aluno');
+
+    Route::post('/', [AlunoController::class, 'store'])->name('salvar-aluno');
+
     Route::get('/mensalidade', function () {
         return view('mensalidade');
     })->name('Lista de mensalidade');

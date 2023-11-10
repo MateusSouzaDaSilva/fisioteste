@@ -13,6 +13,8 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.1.0/vanilla-masker.min.js"></script>
 
     <title>@yield('title')</title>
 
