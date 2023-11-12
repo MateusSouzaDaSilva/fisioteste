@@ -27,9 +27,7 @@ Route::middleware([
         return view('welcome');
     })->name('welcome');
 
-    Route::get('/lista-alunos', function () {
-        return view('lista-alunos');
-    })->name('Lista de alunos');
+    Route::get('/lista-alunos', [AlunoController::class,'exibir'])->name('exibir-alunos');
     
     Route::get('/lista-alunos/cadastrar', [AlunoController::class,'create'])->name('cadastrar-aluno');
 

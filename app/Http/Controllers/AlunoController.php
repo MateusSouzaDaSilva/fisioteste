@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
+
+    public function exibir() {
+
+        $alunos = Aluno::all();
+
+        return view("lista-alunos", ["alunos" => $alunos]);
+    }
     public function create() {
         return view("events.registrar-aluno");
     }
