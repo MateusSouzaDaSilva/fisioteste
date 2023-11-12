@@ -13,6 +13,30 @@ class AlunoController extends Controller
 
     public function store(Request $request) {
 
+        $message = [
+            'nome.required' => 'O campo Nome é obrigatório.',
+            'cpf.required' => 'O campo CPF é obrigatório.',
+            'endereco.required' => 'O campo Endereço é obrigatório.',
+            'bairro.required' => 'O campo Bairro é obrigatório.',
+            'cidade.required' => 'O campo Cidade é obrigatório.',
+            'celular.required' => 'O campo Celular é obrigatório.',
+            'sexo.required' => 'O campo Sexo é obrigatório.',
+            'dtnasc.required' => 'O campo Data de Nascimento é obrigatório.',
+            'dtnasc.date' => 'O campo Data de Nascimento deve ser uma data válida.',
+        ];
+    
+
+        $request->validate([
+            'nome' => 'required',
+            'cpf' => 'required',
+            'endereco' => 'required',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'celular' => 'required',
+            'sexo' => 'required',
+            'dtnasc' => 'required|date',
+        ], $message);
+        
         $aluno = new Aluno();
 
         $aluno->alu_nome = $request->nome;
