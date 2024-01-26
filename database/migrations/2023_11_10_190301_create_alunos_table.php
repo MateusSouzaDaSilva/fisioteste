@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('alunos', function (Blueprint $table) {
-            $table->id('alu_codigo');
+            $table->id();
             $table->timestamps();
             $table->string('alu_nome');
             $table->string('alu_cpf')->unique();

@@ -1,16 +1,17 @@
 @extends('layouts.main')
-@section('title', 'Fisiolates')
+@section('title', 'Editando: ' . $aluno->alu_nome)
 @section('content')
 
 
     <div id="aluno-register-container" class="col-md-6 offset-md-3">
-        <h1>Registre um novo aluno</h1>
-        <form action="/" method="POST" enctype="multipart/form-data">
+        <h1>Edite os dados de {{ $aluno->alu_nome }}</h1>
+        <form action="/aluno/update/{{ $aluno->id }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="title" id="form-label">Nome do aluno:</label>
-                <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome"
-                    placeholder="Nome do aluno" value="{{ old('nome') }}">
+                <input type="text" class="form-control @error('nome') is-invalid @enderror" id="alu_nome" name="alu_nome"
+                    placeholder="Nome do aluno" value="{{ $aluno->alu_nome }}">
 
                 @error('nome')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -20,7 +21,7 @@
             <div class="form-group">
                 <label for="title" id="form-label">CPF:</label>
                 <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="cpf" name="cpf" placeholder="CPF do aluno"
-                    maxlength="14" value="{{ old('cpf') }}">
+                    maxlength="14" value="{{ $aluno->alu_cpf }}">
 
                     @error('cpf')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -29,7 +30,7 @@
             <div class="form-group">
                 <label for="title" id="form-label">Endereço:</label>
                 <input type="text" class="form-control @error('endereco') is-invalid @enderror" id="endereco" name="endereco" placeholder="Endereço do aluno"
-                    value="{{ old('endereco') }}">
+                    value="{{ $aluno->alu_end }}">
 
                     @error('endereco')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -38,7 +39,7 @@
             <div class="form-group">
                 <label for="title" id="form-label">Bairro:</label>
                 <input type="text" class="form-control @error('bairro') is-invalid @enderror" id="bairro" name="bairro" placeholder="Bairro do aluno"
-                    value="{{ old('bairro') }}">
+                    value="{{ $aluno->alu_bairro }}">
 
                     @error('bairro')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -47,7 +48,7 @@
             <div class="form-group">
                 <label for="title" id="form-label">Cidade:</label>
                 <input type="text" class="form-control @error('cidade') is-invalid @enderror" id="cidade" name="cidade" placeholder="Cidade do aluno"
-                    value="{{ old('cidade') }}">
+                    value="{{ $aluno->alu_cidade }}">
 
                     @error('cidade')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -56,12 +57,12 @@
             <div class="form-group">
                 <label for="title" id="form-label">Telefone:</label>
                 <input type="text" class="form-control" id="telefone" name="telefone"
-                    placeholder="Telefone residencial do aluno" maxlength="14" value="{{ old('telefone') }}">
+                    placeholder="Telefone residencial do aluno" maxlength="14" value="{{ $aluno->alu_fone }}">
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Celular:</label>
                 <input type="text" class="form-control @error('celular') is-invalid @enderror" id="celular" name="celular" placeholder="Celular"
-                    maxlength="15" value="{{ old('celular') }}">
+                    maxlength="15" value="{{ $aluno->alu_celular }}">
 
                     @error('celular')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -69,30 +70,22 @@
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Sexo:</label>
-                <select name="sexo" id="sexo" class="form-control">
-                    <option value="F" {{ old('sexo') == 'F' ? 'selected' : '' }}>Feminino</option>
-                    <option value="M" {{ old('sexo') == 'M' ? 'selected' : '' }}>Masculino</option>
+                <select name="alu_sexo" id="alu_sexo" class="form-control">
+                    <option value="F" {{ $aluno->alu_sexo == 'F' ? 'selected' : '' }}>Feminino</option>
+                    <option value="M" {{ $aluno->alu_sexo == 'M' ? 'selected' : '' }}>Masculino</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Data de nascimento:</label>
                 <input type="date" class="form-control @error('dtnasc') is-invalid @enderror" id="dtnasc" name="dtnasc" placeholder="Data de nascimento"
-                    value="{{ old('dtnasc') }}">
+                    value="{{ $aluno->alu_dtnasc }}">
 
                 @error('dtnasc')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="title" id="form-label">Data de Vencimento:</label>
-                <input type="date" class="form-control @error('dtvencimento') is-invalid @enderror" id="dtvencimento" name="dtvencimento" placeholder="Data de vencimento"
-                    value="{{ old('dtvencimento') }}">
-
-                @error('dtvencimento')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <input type="submit" value="Registrar aluno" class="btn btn-primary registrar" id="send">
+            <input type="submit" value="Atualizar aluno" class="btn btn-primary registrar" id="send">
+            <a href="/aluno/avaliacao/{{ $aluno->id }}" class="btn btn-info"> Adicionar avaliação</a>
         </form>
     </div>
 

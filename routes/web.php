@@ -31,7 +31,17 @@ Route::middleware([
     
     Route::get('/lista-alunos/cadastrar', [AlunoController::class,'create'])->name('cadastrar-aluno');
 
+    Route::get('/aluno/edit/{id}', [AlunoController::class, 'edit']);
+
+    Route::put('/aluno/update/{id}', [AlunoController::class, 'update']);
+
+    Route::delete('/aluno/{id}', [AlunoController::class, 'destroy']);
+
+    Route::get('/aluno/avaliacao/{id}', [AlunoController::class, 'exibirAluno']);
+
     Route::post('/', [AlunoController::class, 'store'])->name('salvar-aluno');
+
+    Route::post('/', [AlunoController::class, 'storeAvaliacao'])->name('salvar-avaliacao');
 
     Route::get('/mensalidade', function () {
         return view('mensalidade');
