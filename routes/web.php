@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\AvaliacaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,11 +38,11 @@ Route::middleware([
 
     Route::delete('/aluno/{id}', [AlunoController::class, 'destroy']);
 
-    Route::get('/aluno/avaliacao/{id}', [AlunoController::class, 'exibirAluno']);
+    Route::get('/aluno/avaliacao/{id_aluno}', [AvaliacaoController::class, 'exibirAluno']);
 
     Route::post('/', [AlunoController::class, 'store'])->name('salvar-aluno');
 
-    Route::post('/', [AlunoController::class, 'storeAvaliacao'])->name('salvar-avaliacao');
+    Route::post('/', [AvaliacaoController::class, 'storeAvaliacao'])->name('salvar-avaliacao');
 
     Route::get('/mensalidade', function () {
         return view('mensalidade');

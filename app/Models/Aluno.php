@@ -11,7 +11,7 @@ class Aluno extends Model
 
     protected $table = 'alunos';
     protected $guarded = [];
-    protected $fillable = ['alu_sexo']; 
+    protected $fillable = ['alu_nome', 'alu_cpf', 'alu_end', 'alu_bairro', 'alu_cidade', 'alu_fone', 'alu_celular', 'alu_sexo', 'alu_dtnasc', 'alu_dtvencimento']; 
 
     
 }

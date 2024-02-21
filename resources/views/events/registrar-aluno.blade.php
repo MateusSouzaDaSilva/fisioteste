@@ -92,7 +92,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <input type="submit" value="Registrar aluno" class="btn btn-primary registrar" id="send">
+            <input type="submit" value="Registrar aluno" class="btn btn-primary registrar mb-5" id="send">
         </form>
     </div>
 

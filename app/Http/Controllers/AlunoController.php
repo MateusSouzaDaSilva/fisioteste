@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
-use App\Models\Avaliacao;
+
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -16,11 +16,7 @@ class AlunoController extends Controller
         return view("lista-alunos", ["alunos" => $alunos]);
     }
 
-    public function exibirAluno($id) {
-        $aluno = Aluno::findOrFail($id);
-
-        return view("avaliacao", ["aluno" => $aluno]);
-    }
+   
 
     public function create() {
         return view("events.registrar-aluno");
@@ -71,29 +67,7 @@ class AlunoController extends Controller
             
     }
 
-    public function storeAvaliacao(Request $request) {
-
-        $avaliacao = new Avaliacao();
-
-        $avaliacao->ava_diagn_clinico = $request->diagnostico;
-        $avaliacao->ava_queixa_principal = $request->queixa;
-        $avaliacao->ava_hda = $request->hda;
-        $avaliacao->ava_hpp = $request->hpp;
-        $avaliacao->ava_ex_complementar = $request->complementar;
-        $avaliacao->ava_inspecao = $request->inspecao;
-        $avaliacao->ava_palpacao = $request->palpacao;
-        $avaliacao->ava_teste_articular = $request->articular;
-        $avaliacao->ava_teste_muscular = $request->muscular;
-        $avaliacao->ava_medico = $request->medico;
-        $avaliacao->ava_crm = $request->crm;
-        $avaliacao->ava_especialidade = $request->especialidade;
-        $avaliacao->ava_med_fone = $request->medfone;
-
-        $avaliacao->save();
-
-        return redirect('/');
-        
-    }
+  
 
     public function edit($id) {
 

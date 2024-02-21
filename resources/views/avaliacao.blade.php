@@ -138,7 +138,7 @@
                 @enderror
             </div>
 
-            <a href="/" class="btn btn-primary">Salvar avaliação</a>
+            <a href="/" class="btn btn-primary mb-5">Salvar avaliação</a>
         </form>
     </div>
 
