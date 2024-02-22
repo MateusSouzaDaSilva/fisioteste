@@ -38,11 +38,25 @@ Route::middleware([
 
     Route::delete('/aluno/{id}', [AlunoController::class, 'destroy']);
 
+    Route::post('/', [AlunoController::class, 'store'])->name('salvarAluno');
+
+  
+
+    Route::get('/mensalidade', function () {
+        return view('mensalidade');
+    })->name('Lista de mensalidade');
+
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+
     Route::get('/aluno/avaliacao/{id_aluno}', [AvaliacaoController::class, 'exibirAluno']);
 
-    Route::post('/', [AlunoController::class, 'store'])->name('salvar-aluno');
-
-    Route::post('/', [AvaliacaoController::class, 'storeAvaliacao'])->name('salvar-avaliacao');
+    Route::post('/', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
 
     Route::get('/mensalidade', function () {
         return view('mensalidade');

@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">CPF:</label>
-                <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="cpf" name="cpf" placeholder="CPF do aluno"
+                <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="alu_cpf" name="alu_cpf" placeholder="CPF do aluno"
                     maxlength="14" value="{{ $aluno->alu_cpf }}">
 
                     @error('cpf')
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Endereço:</label>
-                <input type="text" class="form-control @error('endereco') is-invalid @enderror" id="endereco" name="endereco" placeholder="Endereço do aluno"
+                <input type="text" class="form-control @error('endereco') is-invalid @enderror" id="alu_end" name="alu_end" placeholder="Endereço do aluno"
                     value="{{ $aluno->alu_end }}">
 
                     @error('endereco')
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Bairro:</label>
-                <input type="text" class="form-control @error('bairro') is-invalid @enderror" id="bairro" name="bairro" placeholder="Bairro do aluno"
+                <input type="text" class="form-control @error('bairro') is-invalid @enderror" id="alu_bairro" name="alu_bairro" placeholder="Bairro do aluno"
                     value="{{ $aluno->alu_bairro }}">
 
                     @error('bairro')
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Cidade:</label>
-                <input type="text" class="form-control @error('cidade') is-invalid @enderror" id="cidade" name="cidade" placeholder="Cidade do aluno"
+                <input type="text" class="form-control @error('cidade') is-invalid @enderror" id="alu_cidade" name="alu_cidade" placeholder="Cidade do aluno"
                     value="{{ $aluno->alu_cidade }}">
 
                     @error('cidade')
@@ -56,12 +56,12 @@
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" name="telefone"
+                <input type="text" class="form-control" id="alu_fone" name="alu_fone"
                     placeholder="Telefone residencial do aluno" maxlength="14" value="{{ $aluno->alu_fone }}">
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Celular:</label>
-                <input type="text" class="form-control @error('celular') is-invalid @enderror" id="celular" name="celular" placeholder="Celular"
+                <input type="text" class="form-control @error('celular') is-invalid @enderror" id="alu_celular" name="alu_celular" placeholder="Celular"
                     maxlength="15" value="{{ $aluno->alu_celular }}">
 
                     @error('celular')
@@ -77,7 +77,7 @@
             </div>
             <div class="form-group">
                 <label for="title" id="form-label">Data de nascimento:</label>
-                <input type="date" class="form-control @error('dtnasc') is-invalid @enderror" id="dtnasc" name="dtnasc" placeholder="Data de nascimento"
+                <input type="date" class="form-control @error('dtnasc') is-invalid @enderror" id="alu_dtnasc" name="alu_dtnasc" placeholder="Data de nascimento"
                     value="{{ $aluno->alu_dtnasc }}">
 
                 @error('dtnasc')
@@ -93,19 +93,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var cpfInput = document.getElementById('cpf');
+            var cpfInput = document.getElementById('alu_cpf');
 
             VMasker(cpfInput).maskPattern('999.999.999-99');
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            var telefoneInput = document.getElementById('telefone');
+            var telefoneInput = document.getElementById('alu_fone');
 
             VMasker(telefoneInput).maskPattern('(99) 9999-9999');
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            var celularInput = document.getElementById('celular');
+            var celularInput = document.getElementById('alu_celular');
 
             VMasker(celularInput).maskPattern('(99) 99999-9999');
         });
