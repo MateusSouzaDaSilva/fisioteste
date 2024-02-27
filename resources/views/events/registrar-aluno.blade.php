@@ -5,7 +5,7 @@
 
     <div id="aluno-register-container" class="col-md-6 offset-md-3">
         <h1>Registre um novo aluno</h1>
-        <form action="/" method="POST" enctype="multipart/form-data">
+        <form action="{{route('salvarAluno')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title" id="form-label">Nome do aluno:</label>
@@ -92,7 +92,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <input type="submit" value="Registrar aluno" class="btn btn-primary registrar" id="send">
+            <input type="submit" value="Registrar aluno" class="btn btn-primary registrar mb-5" id="send">
         </form>
     </div>
 
