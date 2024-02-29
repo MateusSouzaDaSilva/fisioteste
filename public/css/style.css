@@ -15,16 +15,20 @@ ul {
     list-style: none;
 }
 
+
 body a {
     text-decoration: none;
     color: black;
 }
+
+
 
 /* Header */
 
 header {
     background-color: #C7A6DB;
     padding: 0;
+    
 }
 
 .header {
@@ -57,6 +61,19 @@ header {
     padding:30px 100px;
 }
 
+@media (max-width: 767px) { 
+
+    #tb-agenda {
+        padding: 30px 0px;
+    }
+    
+    /* .grid-lay {
+        width: 75%;
+        height: 75%;
+    } */
+
+    } 
+
 /* Lista de alunos */
 
 .aluno {
@@ -78,6 +95,9 @@ header {
     margin-left: 60px;
 }
 
+.editar {
+    display: flex;
+}
 
 /* Footer */
 
@@ -98,7 +118,7 @@ footer p {
 
 .grid-lay {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     border-top: 1px solid black;
     border-right: 1px solid black;
 }
