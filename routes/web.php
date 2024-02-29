@@ -56,7 +56,7 @@ Route::middleware([
 
     Route::get('/aluno/avaliacao/{id_aluno}', [AvaliacaoController::class, 'exibirAluno']);
 
-    Route::post('/', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
+    // Route::post('/', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
 
     Route::get('/mensalidade', function () {
         return view('mensalidade');

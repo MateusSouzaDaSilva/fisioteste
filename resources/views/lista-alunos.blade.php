@@ -44,9 +44,7 @@
 
 
         <div class="grid-lay">
-            <span>
-                <strong>Id</strong>
-            </span>
+        
             <span>
                 <strong>Nome</strong>
             </span>
@@ -64,7 +62,6 @@
             </span>
 
             @foreach ($alunos as $aluno)
-                <span>{{ $aluno->id }}</span>
                 <span>{{ $aluno->alu_nome }}</span>
                 <span>{{ \Carbon\Carbon::parse($aluno->alu_dtnasc)->age }}</span>
                 <span>
@@ -76,12 +73,12 @@
                 </span>
                 <span>{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->format('d-m-Y') }}</span>
                 <span>
-                    <div class="editar d-flex">
-                    <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary">Editar</a>
+                    <div class="editar">
+                    <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                     <form action="/aluno/{{ $aluno->id }}" method="post" onsubmit="return confirmarExclusao()">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" class="btn btn-danger" value="Excluir">
+                        <button type="submit" class="btn btn-danger" value="E"><i class="bi bi-trash3-fill"></i></input>
                     </form>
                 </div>
                 </span>
