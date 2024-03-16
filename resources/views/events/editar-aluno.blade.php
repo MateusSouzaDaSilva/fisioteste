@@ -85,7 +85,7 @@
                 @enderror
             </div>
             <input type="submit" value="Atualizar aluno" class="btn btn-primary registrar mb-5" id="send">
-            <a href="/aluno/avaliacao/{{ $aluno->id }}" class="btn btn-info"> Adicionar avaliação</a>
+            <a href="/aluno/avaliacao/{{ $aluno->id }}" class="btn-fisio"> Adicionar avaliação</a>
         </form>
     </div>
 

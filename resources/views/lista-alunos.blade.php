@@ -5,7 +5,9 @@
     <div class="d-flex justify-content-center">
         <h1>Lista de alunos</h1>
     </div>
-    <a href="/lista-alunos/cadastrar" class="btn btn-primary">Cadastrar</a>
+    <div class="btn-area">
+    <a href="/lista-alunos/cadastrar" class="btn-fisio">Cadastrar</a>
+    </div>
     <div class="lista-alunos d-flex justify-content-center align-items-center" style="flex-direction: column;">
 
 

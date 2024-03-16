@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class AlunoController extends Controller
 {
 
+    public function index() {
+        $alunos = Aluno::pluck('alu_nome', 'id');
+        return view('welcome', compact('alunos'));
+    }
+
     public function exibir() {
 
         $alunos = Aluno::all();

@@ -4,6 +4,7 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AvaliacaoController;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Aluno;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +41,11 @@ Route::middleware([
 
     Route::post('/', [AlunoController::class, 'store'])->name('salvarAluno');
 
-  
+    Route::get('/', function () {
+        $horarios = range(7, 18);
+        $alunos = Aluno::pluck('alu_nome');
+        return view('welcome', ['horarios' => $horarios, 'alunos' => $alunos]);
+    });
 
     Route::get('/mensalidade', function () {
         return view('mensalidade');

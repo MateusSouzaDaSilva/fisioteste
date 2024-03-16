@@ -4,7 +4,7 @@
 
     <div id="tb-agenda">
 
-        <table class="table table-bordered tabelaEditavel">
+        <!-- <table class="table table-bordered tabelaEditavel">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -105,8 +105,29 @@
                     <td></td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
+       <table>
+        <tr>
+            <th>Horário</th>
+            <th colspan="7">Alunos</th>
+        </tr>
+        @foreach ($horarios as $horario)
+            <tr>
+                <td>{{ $horario }}:00</td>
+                @for ($i = 0; $i < 7; $i++)
+                    <td>
+                        <select>
+                            <option value="Livre" selected>
+                            @foreach ($alunos as $aluno)
+                                <option value="{{ $aluno }}">{{ $aluno }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                @endfor
+            </tr>
+        @endforeach
+    </table>
         {{-- <table class="tabelaEditavel">
                 <thead>
                     <tr>
@@ -136,7 +157,7 @@
                         <td>(84) 3232-3232</td>
                     </tr>
                 </tbody>
-            </table> --}}
+            </table> --}} -->
 
     </div>
 @endsection
