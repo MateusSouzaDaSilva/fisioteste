@@ -18,6 +18,16 @@
 
             </div>
             <div class="form-group">
+                <label for="title" id="form-label">Sobrenome do aluno:</label>
+                <input type="text" class="form-control @error('sobrenome') is-invalid @enderror" id="sobrenome" name="sobrenome"
+                    placeholder="Sobrenome do aluno" value="{{ old('sobrenome') }}">
+
+                @error('sobrenome')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+            </div>
+            <div class="form-group">
                 <label for="title" id="form-label">CPF:</label>
                 <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="cpf" name="cpf" placeholder="CPF do aluno"
                     maxlength="14" value="{{ old('cpf') }}">

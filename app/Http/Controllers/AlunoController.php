@@ -44,6 +44,7 @@ class AlunoController extends Controller
 
         $request->validate([
             'nome' => 'required',
+            'sobrenome' => 'required',
             'cpf' => 'required',
             'endereco' => 'required',
             'bairro' => 'required',
@@ -56,6 +57,7 @@ class AlunoController extends Controller
         $aluno = new Aluno();
 
         $aluno->alu_nome = $request->nome;
+        $aluno->alu_sobrenome = $request->sobrenome;
         $aluno->alu_cpf = $request->cpf;
         $aluno->alu_end = $request->endereco;
         $aluno->alu_bairro = $request->bairro;

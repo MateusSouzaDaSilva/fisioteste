@@ -59,9 +59,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    Route::get('/aluno/avaliacao/{id_aluno}', [AvaliacaoController::class, 'exibirAluno']);
+    Route::get('/avaliacao/{id}', [AvaliacaoController::class, 'exibirAluno']);
 
-    // Route::post('/', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
+     Route::post('/', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
+
+     Route::get('/avaliacao/edit/{id}', [AvaliacaoController::class, 'edit']);
 
     Route::get('/mensalidade', function () {
         return view('mensalidade');
