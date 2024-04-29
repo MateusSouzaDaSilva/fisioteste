@@ -42,7 +42,7 @@
                 @endif
 
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 pl-3" href="{{ route('register') }}">
-                    {{ __('Novo aqui? Registre-se') }}
+                    {{ __('Registre-se') }}
                 </a>
 
                 <x-button class="ms-4">

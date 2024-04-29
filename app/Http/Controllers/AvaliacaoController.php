@@ -15,7 +15,7 @@ class AvaliacaoController extends Controller
         $avaliacao = new Avaliacao();
 
 
-        $avaliacao->alu_id = 1;
+        $avaliacao->alu_id = $request->alu_id;
 
         $avaliacao->ava_diagn_clinico = $request->ava_diagn_clinico;
         $avaliacao->ava_queixa_principal = $request->ava_queixa_principal;

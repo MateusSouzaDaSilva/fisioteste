@@ -8,6 +8,7 @@
         <h1>Ficha de avaliação: {{ $aluno->alu_nome }} </h1>
         <form action="{{ route('salvarAvaliacao') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="alu_id" value="{{ $aluno->id }}">
             <div class="form-group">
                 <label for="title" id="form-label">Diagnóstico clinico:</label>
                 <textarea type="textbox" class="form-control @error('diagnostico') is-invalid @enderror" id="ava_diagn_clinico" name="ava_diagn_clinico" placeholder="Diagnostico do aluno"

@@ -13,6 +13,12 @@ export default {
 
     theme: {
         extend: {
+            backgroundColor: {
+                'pink-fisiolates' : '#e3d3ed',
+                'btn-fisiolates' : '#c78cea',
+                'hover-fisiolates' : '#6b50a1',
+                'active-fsiolates' : '#523b77',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
