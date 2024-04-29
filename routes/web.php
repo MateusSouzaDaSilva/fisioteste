@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\AgendamentoController;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Aluno;
@@ -47,9 +48,6 @@ Route::middleware([
         return view('welcome', ['horarios' => $horarios, 'alunos' => $alunos]);
     });
 
-    Route::get('/mensalidade', function () {
-        return view('mensalidade');
-    })->name('Lista de mensalidade');
 
 });
 
@@ -68,5 +66,10 @@ Route::middleware([
     Route::get('/mensalidade', function () {
         return view('mensalidade');
     })->name('Lista de mensalidade');
+
+    Route::post('/salvar-agendamento', [AgendamentoController::class, 'salvar'])->name('salvar.agendamento');
+
+    Route::get('/', [AgendamentoController::class, 'index'])->name('agendamentos.index');
+    Route::post('/agendamentos', [AgendamentoController::class, 'store'])->name('agendamentos.store');
 
 });

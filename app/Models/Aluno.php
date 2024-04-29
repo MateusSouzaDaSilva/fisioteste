@@ -16,4 +16,9 @@ class Aluno extends Model
     public function avaliacoes() {
         return $this->hasMany(Avaliacao::class);
     }
+
+    public function agendamento()
+    {
+        return $this->hasOne(Agendamento::class);
+    }
 }
