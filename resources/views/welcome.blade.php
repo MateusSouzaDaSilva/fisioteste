@@ -2,25 +2,40 @@
 @section('title', 'Fisiolates')
 @section('content')
 
-    <div id="tb-agenda">
-
-
-    @foreach($agendamentos as $agendamento)
-    <p>{{ $agendamento->aluno->nome }} - {{ $agendamento->horario }}</p>
-@endforeach
-
-<form method="post" action="{{ route('agendamentos.store') }}">
+<div id="tb-agenda">
+<form action="/atualizar-agendamento" method="post">
     @csrf
-    <select name="id_aluno">
-        @foreach($alunos as $aluno)
-            <option value="{{ $aluno->id }}">{{ $aluno->nome }}</option>
-        @endforeach
-    </select>
-    <input type="text" name="horario">
-    <button type="submit">Agendar</button>
+    @method('PUT')
+    <table>
+        <tr>
+            <th>Horário</th>
+            <th>Segunda-feira</th>
+            <th>Terça-feira</th>
+            <th>Quarta-feira</th>
+            <th>Quinta-feira</th>
+            <th>Sexta-feira</th>
+        </tr>
+        @for ($hora = 8; $hora <= 17; $hora++)
+        <tr>
+            <td>{{ str_pad($hora, 2, '0', STR_PAD_LEFT) }}:00</td>
+            @for ($dia = 1; $dia <= 5; $dia++)
+            <td>
+                <select name="agendamento[{{ $hora }}][{{ $dia }}]">
+                    <option value="" selected></option>
+                    
+                </select>
+            </td>
+            @endfor
+        </tr>
+        @endfor
+    </table>
+    <input type="submit" class="btn-fisio" value="Atualizar agendamento" id="send">
 </form>
 
-      
 
-    </div>
+</div>
+
+
+
+
 @endsection

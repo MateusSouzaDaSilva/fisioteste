@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('alu_id');
             $table->integer('age_horario'); // Campo para armazenar o horário
+            $table->string('age_dia');
             $table->boolean('age_ativo')->default(true);
             $table->timestamp('age_dtcad')->useCurrent();
             $table->timestamp('age_dtalt')->nullable();

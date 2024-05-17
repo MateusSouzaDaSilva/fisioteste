@@ -2,16 +2,16 @@
 @section('title', 'Fisiolates')
 @section('content')
 
-    <div class="d-flex justify-content-center">
-        <h1>Lista de alunos</h1>
-    </div>
-    <div class="btn-area">
+<div class="d-flex justify-content-center">
+    <h1>Lista de alunos</h1>
+</div>
+<div class="btn-area">
     <a href="/lista-alunos/cadastrar" class="btn-fisio">Cadastrar</a>
-    </div>
-    <div class="lista-alunos d-flex justify-content-center align-items-center" style="flex-direction: column;">
+</div>
+<div class="lista-alunos d-flex justify-content-center align-items-center" style="flex-direction: column;">
 
 
-        {{-- @foreach ($alunos as $aluno)
+    <!-- @foreach ($alunos as $aluno)
     <div class="aluno mb-4">
         <div class="card-aluno row">
             <div class="left col">
@@ -42,62 +42,91 @@
             </div>
         </div>
     </div>
-    @endforeach --}}
+    @endforeach  -->
 
 
-        <div class="grid-lay">
-        
-            <span>
-                <strong>Nome</strong>
-            </span>
-            <span>
-                <strong>Idade</strong>
-            </span>
-            <span>
-                <strong>Sexo</strong>
-            </span>
-            <span>
-                <strong>Vencimento</strong>
-            </span>
-            <span>
-                <strong>Editar/Apagar</strong>
-            </span>
+    <div class="grid-lay">
 
-            @foreach ($alunos as $aluno)
-                <span>{{ $aluno->alu_nome }}</span>
-                <span>{{ \Carbon\Carbon::parse($aluno->alu_dtnasc)->age }}</span>
-                <span>
-                    @if ($aluno->alu_sexo === 'M')
-                        Masculino
-                    @elseif ($aluno->alu_sexo === 'F')
-                        Feminino
-                    @endif
-                </span>
-                <span>{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->format('d-m-Y') }}</span>
-                <span>
-                    <div class="editar">
-                    <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                    <form action="/aluno/{{ $aluno->id }}" method="post" onsubmit="return confirmarExclusao()">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" value="E"><i class="bi bi-trash3-fill"></i></input>
-                    </form>
-                </div>
-                </span>
-            @endforeach
+        <span>
+            <strong>Nome</strong>
+        </span>
+        <span>
+            <strong>Idade</strong>
+        </span>
+        <span>
+            <strong>Sexo</strong>
+        </span>
+        <span>
+            <strong>Vencimento</strong>
+        </span>
+        <span>
+            <strong>Pago?</strong>
+        </span>
+        <span>
+            <strong>Editar/Apagar</strong>
+        </span>
 
-        </div>
+        @foreach ($alunos as $aluno)
+        <span>{{ $aluno->alu_nome }}</span>
+        <span>{{ \Carbon\Carbon::parse($aluno->alu_dtnasc)->age }}</span>
+        <span>
+            @if ($aluno->alu_sexo === 'M')
+            Masculino
+            @elseif ($aluno->alu_sexo === 'F')
+            Feminino
+            @endif
+        </span>
+        <span id="aluDtvencimento" class="{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->isPast() ? 'text-danger' : '' }}">{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->format('d-m-Y') }}</span>
+        <span>
+            <form action="{{ route('aluno.pagou', ['id' => $aluno->id]) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary">Pagou</button>
+            </form>
 
+        </span>
+        <span>
+            <div class="editar">
+                <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                <form action="/aluno/{{ $aluno->id }}" method="post" onsubmit="return confirmarExclusao()">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" value="E"><i class="bi bi-trash3-fill"></i></input>
+                </form>
+            </div>
+        </span>
+        @endforeach
 
     </div>
 
-    <script>
-      
-      function confirmarExclusao() {
+
+</div>
+
+<script>
+    function confirmarExclusao() {
         return confirm('Tem certeza que deseja excluir este aluno?');
     }
 
-    </script>
+    $(document).ready(function() {
+        $('#pagamentoButton').click(function() {
+            const alunoId = $(this).data('id');
+            $.ajax({
+                url: '/aluno/confirmarPagamento/', // Replace with your actual controller action URL
+                method: 'POST',
+                data: {
+                    alunoId: alunoId
+                },
+                success: function(response) {
+                    // Update UI elements to indicate successful payment
+                    $('#pagamentoButton').text('Pago');
+                    $('#aluDtvencimento').text(updatedDate.format('d/m/Y')); // Assuming you have an element with ID 'aluDtvencimento' to display the date
+                },
+                error: function(error) {
+                    // Handle payment update error
+                }
+            });
+        });
+    });
+</script>
 
 
 

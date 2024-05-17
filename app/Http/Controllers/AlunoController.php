@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\Agendamento;
+use Carbon\Carbon;
+
 
 use Illuminate\Http\Request;
 
@@ -11,7 +14,9 @@ class AlunoController extends Controller
 
     public function index() {
         $alunos = Aluno::pluck('alu_nome', 'id');
-        return view('welcome', compact('alunos'));
+        $agendamentos = Agendamento::with('aluno')->get();
+        return view('welcome', compact('agendamentos', 'alunos'));
+        
     }
 
     public function exibir() {
@@ -110,4 +115,18 @@ class AlunoController extends Controller
         return redirect('lista-alunos')->with('msg', 'Evento excluído com sucesso!');
     }
 
+    public function pagou($id) {
+      // Encontre o aluno pelo ID
+      $aluno = Aluno::findOrFail($id);
+
+      // Obtenha a data de vencimento atual e adicione um mês
+      $novaDataVencimento = Carbon::parse($aluno->alu_dtvencimento)->addMonth();
+
+      // Atualize a coluna alu_dtvencimento
+      $aluno->alu_dtvencimento = $novaDataVencimento;
+      $aluno->save();
+
+      // Redirecione ou retorne uma resposta apropriada
+      return redirect()->back()->with('success', 'Data de vencimento atualizada para o próximo mês.');
+    }
 }

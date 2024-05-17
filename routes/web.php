@@ -42,12 +42,7 @@ Route::middleware([
 
     Route::post('/', [AlunoController::class, 'store'])->name('salvarAluno');
 
-    Route::get('/', function () {
-        $horarios = range(7, 18);
-        $alunos = Aluno::pluck('alu_nome');
-        return view('welcome', ['horarios' => $horarios, 'alunos' => $alunos]);
-    });
-
+    Route::post('/aluno/{id}/pagou', [AlunoController::class, 'pagou'])->name('aluno.pagou');
 
 });
 
@@ -59,17 +54,23 @@ Route::middleware([
 
     Route::get('/avaliacao/{id}', [AvaliacaoController::class, 'exibirAluno']);
 
-     Route::post('/', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
+     Route::post('/avaliacao/salvar', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
 
      Route::get('/avaliacao/edit/{id}', [AvaliacaoController::class, 'edit']);
 
     Route::get('/mensalidade', function () {
-        return view('mensalidade');
+
+        $alunos = Aluno::all(); 
+
+        return view('mensalidade', ['alunos' => $alunos]);
     })->name('Lista de mensalidade');
 
-    Route::post('/salvar-agendamento', [AgendamentoController::class, 'salvar'])->name('salvar.agendamento');
+    // Route::get('/', [AgendamentoController::class, 'show']);
+    
+    Route::put('/atualizar-agendamento', [AgendamentoController::class, 'update'])->name('agendamentos.update');
 
-    Route::get('/', [AgendamentoController::class, 'index'])->name('agendamentos.index');
-    Route::post('/agendamentos', [AgendamentoController::class, 'store'])->name('agendamentos.store');
+    Route::get('/agendamentos/index', [AgendamentoController::class, 'index'])->name('agendamentos.index');
+    Route::post('/agendamentos', [AgendamentoController::class, 'storae'])->name('agendamentos.store');
+    
 
 });
