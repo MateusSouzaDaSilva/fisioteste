@@ -39,16 +39,41 @@ class AvaliacaoController extends Controller
 
     public function exibirAluno($id) {
         $aluno = Aluno::findOrFail($id);
+    
 
         return view("avaliacao", ["aluno" => $aluno]);
     }
 
-    public function edit($id) {
+    public function edit($alunoId, $avaliacaoId)
+    {
+        $aluno = Aluno::find($alunoId);
+        $avaliacao = Avaliacao::find($avaliacaoId);
+        $avaliacoes = Avaliacao::where('alu_id', $alunoId)->get();
 
-        $aluno = Aluno::findOrFail($id);
-        $avaliacao = Avaliacao::findOrFail($id);
-
-        return view("exibir-avaliacao", ['aluno' => $aluno, 'avaliacao' => $avaliacao]);
+        return view('exibir-avaliacao', compact('aluno', 'avaliacao', 'avaliacoes', 'avaliacaoId'));
     }
 
+    public function update(Request $request, $avaliacaoId)
+    {
+        $avaliacao = Avaliacao::find($avaliacaoId);
+        $avaliacao->update($request->all());
+
+        return redirect()->route('avaliacao.edit', ['alunoId' => $avaliacao->alu_id, 'avaliacaoId' => $avaliacao->id])
+            ->with('success', 'Avaliação atualizada com sucesso!');
+    }
+
+    public function destroy($avaliacaoId)
+    {
+        
+        $avaliacao = Avaliacao::find($avaliacaoId);
+        if ($avaliacao) {
+            $alunoId = $avaliacao->alu_id;
+            $avaliacao->delete();
+
+            return redirect()->route('avaliacao.edit', ['alunoId' => $alunoId, 'avaliacaoId' => Avaliacao::where('alu_id', $alunoId)->first()->id ?? ''])
+                ->with('success', 'Avaliação excluída com sucesso!');
+        } else {
+            return redirect()->back()->with('error', 'Avaliação não encontrada!');
+        }
+    }
 }

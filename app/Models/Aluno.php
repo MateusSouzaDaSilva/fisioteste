@@ -14,7 +14,7 @@ class Aluno extends Model
     protected $fillable = ['alu_cpf','alu_nome', 'alu_end', 'alu_bairro', 'alu_cidade', 'alu_fone', 'alu_celular', 'alu_sexo', 'alu_dtnasc', 'alu_dtvencimento']; 
 
     public function avaliacoes() {
-        return $this->hasMany(Avaliacao::class);
+        return $this->hasMany(Avaliacao::class, 'alu_id', 'id');
     }
 
     public function agendamento()

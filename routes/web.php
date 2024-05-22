@@ -56,7 +56,11 @@ Route::middleware([
 
      Route::post('/avaliacao/salvar', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
 
-     Route::get('/avaliacao/edit/{id}', [AvaliacaoController::class, 'edit']);
+     Route::get('/avaliacao/edit/{alunoId}/{avaliacaoId}', [AvaliacaoController::class, 'edit'])->name('avaliacao.edit');
+
+     Route::delete('/avaliacao/deletar/{avaliacaoId}', [AvaliacaoController::class, 'destroy']);
+    
+     Route::put('/avaliacao/update/{avaliacaoId}', [AvaliacaoController::class, 'update'])->name('avaliacao.update');
 
     Route::get('/mensalidade', function () {
 

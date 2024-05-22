@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aluno;
 use App\Models\Agendamento;
+use App\Models\Avaliacao;
 use Carbon\Carbon;
 
 
@@ -21,9 +22,12 @@ class AlunoController extends Controller
 
     public function exibir() {
 
-        $alunos = Aluno::all();
+        $currentDate = \Carbon\Carbon::now();
+    
+        $validAlunos = Aluno::where('alu_dtvencimento', '>=', $currentDate)->get();
+        $expiredAlunos = Aluno::where('alu_dtvencimento', '<', $currentDate)->get();
 
-        return view("lista-alunos", ["alunos" => $alunos]);
+        return view("lista-alunos", compact('validAlunos', 'expiredAlunos'));
     }
 
    
@@ -84,8 +88,9 @@ class AlunoController extends Controller
     public function edit($id) {
 
         $aluno = Aluno::findOrFail($id);
+        $avaliacao = $aluno->avaliacoes()->latest()->first();
 
-        return view("events.editar-aluno", ['aluno' => $aluno]);
+        return view("events.editar-aluno", compact('aluno', 'avaliacao'));
     }
 
     public function update(Request $request) {

@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Figtree', sans-serif;
 }
 
 p {
@@ -21,38 +22,69 @@ body a {
     color: black;
 }
 
-
+main {
+    margin-bottom: 20px;
+}
 
 /* Header */
 
 header {
-    background-color: #C7A6DB;
-    padding: 0;
-    
+    position: relative; /* Defina o posicionamento relativo */
+    background-color: #C7A6DB; /* Cor de fundo do cabeçalho */
+    padding-bottom: 20px; /* Espaçamento na parte inferior para o menubar */
 }
 
 .header {
-    height: 80px;
+    width: 100%; /* Defina a largura da div do logo */
+    height: 100px; /* Defina a altura da div do logo */
+    overflow: hidden; /* Esconda qualquer conteúdo que exceda a div */
+}
+
+.header img {
+    width: 100%; /* Ajuste a largura da imagem para preencher a div */
+    height: 100%; /* Ajuste a altura da imagem para preencher a div */
+    object-fit: contain; /* Mantenha a proporção da imagem */
+    object-position: left center; /* Posicione a imagem à esquerda */
 }
 
 .menubar {
-    background-color: #B77ADC;
-    font-weight: bold;
+    background-color: #B77ADC; /* Cor de fundo do menubar */
+    font-weight: bold; /* Defina a espessura da fonte */
+    position: absolute; /* Defina o posicionamento absoluto */
+    width: 100%; /* Defina a largura total */
+    
 }
 
-.menubar a {
-    color: black;
-    padding: 5px;
-}
-
-.nav-item img {
-    width: 30px;
+.menubar ul {
+    padding: 0; /* Remova o preenchimento do ul */
 }
 
 .nav-item {
     display: flex;
-    align-items: center;
-    margin-right: 50px;
+    align-items: center; /* Alinhe verticalmente os itens */
+    margin-right: 20px; /* Espaçamento entre os itens */
+}
+
+.nav-link {
+    display: inline-flex; /* Use flexbox para alinhar os ícones e o texto horizontalmente */
+    align-items: center; /* Alinhe verticalmente o texto e as imagens */
+    color: black; /* Cor do texto */
+    text-decoration: none; /* Remova a decoração do link */
+    padding: 5px; /* Adicione um espaçamento interno ao link */
+}
+
+.nav-link:hover {
+    color: white; /* Cor do texto ao passar o mouse */
+    background-color: #9D5DB3; /* Cor de fundo ao passar o mouse */
+}
+
+.nav-item img {
+    width: 30px; /* Defina a largura das imagens */
+    margin-right: 5px; /* Espaçamento entre a imagem e o texto */
+}
+
+.menubar a.nav-link {
+    color: black; /* Define a cor do texto como preto */
 }
 
 /* Agendamento */
@@ -75,6 +107,10 @@ header {
     } 
 
 /* Lista de alunos */
+
+.title-alunos {
+    padding-top: 15px;
+}
 
 .aluno {
     height: 100px;
@@ -138,6 +174,96 @@ th, td {
     text-align: left;
 }
 
+.btn-float {
+    position: fixed;
+    bottom: 50px;
+    right: 12px;
+    z-index: 1000; /* Garantir que o botão esteja acima de outros elementos */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 200px;
+    text-decoration: none;
+    
+}
+
+
+
+.grid-lay:last-child {
+    margin-bottom: 20px; /* Adapte o valor conforme necessário */
+}
+
+.grid-lay {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #c7a6db;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-title {
+    grid-column: span 6; /* Faz o título ocupar todas as colunas */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 10px; /* Espaçamento inferior para separação das colunas */
+    font-size: 1.5em; /* Tamanho da fonte do título */
+    color: #5a3e85;
+}
+
+.grid-lay span {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.grid-lay span strong {
+    color: #5a3e85;
+}
+
+.editar {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.btn-primary {
+    background-color: #b77adc;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #a066c3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.bi {
+    font-size: 1.2em;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
 /* Footer */
 
 footer {
@@ -155,19 +281,18 @@ footer p {
     margin-bottom: 0;
 }
 
-.grid-lay {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
 
-.grid-lay > span {
-    padding: 8px 4px;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-}
 
+/* Responsividade */
+@media (max-width: 768px) {
+    .grid-lay {
+        grid-template-columns: 1fr;
+    }
+
+    .table-title {
+        font-size: 1.2em;
+    }
+}
 
 /* .tabelaEditavel {
     border:solid 1px;

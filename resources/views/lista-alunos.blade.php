@@ -2,106 +2,106 @@
 @section('title', 'Fisiolates')
 @section('content')
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center title-alunos">
     <h1>Lista de alunos</h1>
 </div>
 <div class="btn-area">
-    <a href="/lista-alunos/cadastrar" class="btn-fisio">Cadastrar</a>
+    <a href="/lista-alunos/cadastrar" class="btn-fisio btn-float"><i class="bi bi-plus-lg"></i> Aluno</a>
 </div>
+
+
 <div class="lista-alunos d-flex justify-content-center align-items-center" style="flex-direction: column;">
 
+@if ($expiredAlunos->isNotEmpty())
+<div class="grid-lay">
+    <!-- Seção de Alunos com Vencimento Expirado -->
+    <h2 class="table-title">Alunos com Vencimento Expirado</h2>
+    <span><strong>Nome</strong></span>
+    <span><strong>Idade</strong></span>
+    <span><strong>Sexo</strong></span>
+    <span><strong>Vencimento</strong></span>
+    <span><strong>Confirmar Pagamento</strong></span>
+    <span><strong>Editar/Apagar</strong></span>
 
-    <!-- @foreach ($alunos as $aluno)
-    <div class="aluno mb-4">
-        <div class="card-aluno row">
-            <div class="left col">
-                <div class="nome-aluno">Nome: {{ $aluno->alu_nome }}</div>
-                <div class="info row">
-                    <div class="idade-aluno col-6">Idade: {{ \Carbon\Carbon::parse($aluno->alu_dtnasc)->age }}</div>
-                    <div class="sexo-aluno col-6">
-                        Sexo: 
-                        @if ($aluno->alu_sexo === 'M')
-                            Masculino
-                        @elseif ($aluno->alu_sexo === 'F')
-                            Feminino
-                        @endif
-                    </div>
-                </div>
-                <div class="fone-aluno">Fone: {{ $aluno->alu_celular }}</div>
-            </div>
-            <div class="right col-6">
-                <div class="dtvencimento">Vencimento: 12/11/2023</div>
-                <div class="editar">
-                    <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary">Editar</a>
-                    <form action="/aluno/{{ $aluno->id }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" class="btn btn-danger" value="Excluir">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach  -->
-
-
-    <div class="grid-lay">
-
-        <span>
-            <strong>Nome</strong>
-        </span>
-        <span>
-            <strong>Idade</strong>
-        </span>
-        <span>
-            <strong>Sexo</strong>
-        </span>
-        <span>
-            <strong>Vencimento</strong>
-        </span>
-        <span>
-            <strong>Pago?</strong>
-        </span>
-        <span>
-            <strong>Editar/Apagar</strong>
-        </span>
-
-        @foreach ($alunos as $aluno)
-        <span>{{ $aluno->alu_nome }}</span>
-        <span>{{ \Carbon\Carbon::parse($aluno->alu_dtnasc)->age }}</span>
-        <span>
-            @if ($aluno->alu_sexo === 'M')
-            Masculino
-            @elseif ($aluno->alu_sexo === 'F')
-            Feminino
-            @endif
-        </span>
-        <span id="aluDtvencimento" class="{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->isPast() ? 'text-danger' : '' }}">{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->format('d-m-Y') }}</span>
-        <span>
-            <form action="{{ route('aluno.pagou', ['id' => $aluno->id]) }}" method="POST">
+    @foreach ($expiredAlunos as $aluno)
+    <span>{{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}</span>
+    <span>{{ \Carbon\Carbon::parse($aluno->alu_dtnasc)->age }}</span>
+    <span>
+        @if ($aluno->alu_sexo === 'M')
+        Masculino
+        @elseif ($aluno->alu_sexo === 'F')
+        Feminino
+        @endif
+    </span>
+    <span id="aluDtvencimento" class="{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->isPast() ? 'text-danger' : '' }}">{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->format('d-m-Y') }}</span>
+    <span>
+        <form action="{{ route('aluno.pagou', ['id' => $aluno->id]) }}" method="POST" onsubmit="return confirmarPagamento()">
+            @csrf
+            <button type="submit" class="btn btn-success">Confirmar</button>
+        </form>
+    </span>
+    <span>
+        <div class="editar">
+            <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+            <form action="/aluno/{{ $aluno->id }}" method="post" onsubmit="return confirmarExclusao()">
                 @csrf
-                <button type="submit" class="btn btn-primary">Pagou</button>
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" value="E"><i class="bi bi-trash3-fill"></i></button>
             </form>
+        </div>
+    </span>
+    @endforeach
+</div>
+@endif
 
-        </span>
-        <span>
-            <div class="editar">
-                <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                <form action="/aluno/{{ $aluno->id }}" method="post" onsubmit="return confirmarExclusao()">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" value="E"><i class="bi bi-trash3-fill"></i></input>
-                </form>
-            </div>
-        </span>
-        @endforeach
+<div class="grid-lay">
+    <!-- Seção de Alunos com Vencimento Válido -->
+    <h2 class="table-title">Alunos</h2>
+    <span><strong>Nome</strong></span>
+    <span><strong>Idade</strong></span>
+    <span><strong>Sexo</strong></span>
+    <span><strong>Vencimento</strong></span>
+    <span><strong>Confirmar Pagamento</strong></span>
+    <span><strong>Editar/Apagar</strong></span>
 
-    </div>
-
+    @foreach ($validAlunos as $aluno)
+    <span>{{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}</span>
+    <span>{{ \Carbon\Carbon::parse($aluno->alu_dtnasc)->age }}</span>
+    <span>
+        @if ($aluno->alu_sexo === 'M')
+        Masculino
+        @elseif ($aluno->alu_sexo === 'F')
+        Feminino
+        @endif
+    </span>
+    <span id="aluDtvencimento" class="{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->isPast() ? 'text-danger' : '' }}">{{ \Carbon\Carbon::parse($aluno->alu_dtvencimento)->format('d-m-Y') }}</span>
+    <span>
+        <form action="{{ route('aluno.pagou', ['id' => $aluno->id]) }}" method="POST" onsubmit="return confirmarPagamento()">
+            @csrf
+            <button type="submit" class="btn btn-success">Confirmar</button>
+        </form>
+    </span>
+    <span>
+        <div class="editar">
+            <a href="/aluno/edit/{{ $aluno->id }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+            <form action="/aluno/{{ $aluno->id }}" method="post" onsubmit="return confirmarExclusao()">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" value="E"><i class="bi bi-trash3-fill"></i></button>
+            </form>
+        </div>
+    </span>
+    @endforeach
+</div>
 
 </div>
 
 <script>
+
+    function confirmarPagamento() {
+        return confirm('Tem certeza que deseja alterar a data de pagamento deste aluno?');
+    }
+
     function confirmarExclusao() {
         return confirm('Tem certeza que deseja excluir este aluno?');
     }
