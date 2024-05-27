@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Agendamento;
 use App\Models\Aluno;
+use App\Models\Horario;
+use Carbon\Carbon;
 
 class AgendamentoController extends Controller
 {
@@ -86,4 +88,48 @@ class AgendamentoController extends Controller
 
         return response()->json(['success' => true]);
     }
-}
+
+    public function weeklySchedule()
+    {
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+
+        $horarios = Horario::whereTime('hora', '>=', '08:00:00')
+            ->whereTime('hora', '<=', '20:00:00')
+            ->get();
+
+        $agendamentos = Agendamento::whereBetween('created_at', [$startOfWeek, $endOfWeek])
+            ->with('aluno', 'horario')
+            ->get()
+            ->groupBy(function ($agendamento) {
+                return $agendamento->created_at->format('Y-m-d');
+            });
+
+        $alunos = Aluno::all();
+
+        return view('welcome', compact('horarios', 'agendamentos', 'alunos'));
+    }
+
+    public function allocate(Request $request, Horario $horario)
+    {
+        $request->validate([
+            'alu_id' => 'required|exists:alunos,id',
+        ]);
+
+        $agendamentoCount = Agendamento::where('horario_id', $horario->id)
+            ->whereDate('created_at', Carbon::now()->format('Y-m-d'))
+            ->count();
+
+        if ($agendamentoCount < 7) {
+            Agendamento::create([
+                'alu_id' => $request->alu_id,
+                'horario_id' => $horario->id,
+                'age_ativo' => true,
+            ]);
+            return redirect()->back()->with('success', 'Aluno alocado com sucesso.');
+        }
+
+        return redirect()->back()->with('error', 'O horário já está cheio.');
+    }
+    }
+

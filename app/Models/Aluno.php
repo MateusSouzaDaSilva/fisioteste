@@ -19,6 +19,6 @@ class Aluno extends Model
 
     public function agendamento()
     {
-        return $this->hasOne(Agendamento::class, 'alu_id', 'id', 'age_dia');
+        return $this->hasOne(Agendamento::class, 'alu_id');
     }
 }

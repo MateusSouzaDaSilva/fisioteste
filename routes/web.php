@@ -26,9 +26,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // })->name('welcome');
 
     Route::get('/lista-alunos', [AlunoController::class,'exibir'])->name('exibir-alunos');
     
@@ -40,9 +40,12 @@ Route::middleware([
 
     Route::delete('/aluno/{id}', [AlunoController::class, 'destroy']);
 
-    Route::post('/', [AlunoController::class, 'store'])->name('salvarAluno');
+    Route::post('/aluno/salvar', [AlunoController::class, 'store'])->name('salvarAluno');
 
     Route::post('/aluno/{id}/pagou', [AlunoController::class, 'pagou'])->name('aluno.pagou');
+
+    Route::get('/', [AgendamentoController::class, 'weeklySchedule'])->name('agendamentos.weekly_schedule');
+    Route::post('horarios/{horario}/allocate', [AgendamentoController::class, 'allocate'])->name('agendamentos.allocate');
 
 });
 

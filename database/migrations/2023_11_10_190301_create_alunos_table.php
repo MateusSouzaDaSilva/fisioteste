@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('alu_nome');
+            $table->string('alu_sobrenome');
             $table->string('alu_cpf')->unique();
             $table->string('alu_end');
             $table->string('alu_bairro');
