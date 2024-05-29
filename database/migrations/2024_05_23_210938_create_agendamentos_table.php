@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('horario_id');
             $table->foreign('horario_id')->references('id')->on('horarios')->onDelete('cascade');
 
+
             // Active flag (age_ativo) with default true
             $table->boolean('age_ativo')->default(true);
 
