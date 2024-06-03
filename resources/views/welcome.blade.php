@@ -15,7 +15,7 @@
             <th>Quinta-feira</th>
             <th>Sexta-feira</th>
         </tr>
-        @for ($hora = 8; $hora <= 17; $hora++)
+        @for ($hora = 7; $hora <= 20; $hora++)
         <tr>
             <td>{{ str_pad($hora, 2, '0', STR_PAD_LEFT) }}:00</td>
             @for ($dia = 1; $dia <= 5; $dia++)
