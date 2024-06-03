@@ -5,8 +5,9 @@
 
     <div id="aluno-register-container" class="col-md-6 offset-md-3">
         <h1>Registre um novo aluno</h1>
-        <form action="/" method="POST" enctype="multipart/form-data">
+        <form action="/aluno/save" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('POST')
             <div class="form-group">
                 <label for="title" id="form-label">Nome do aluno:</label>
                 <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome"

@@ -13,12 +13,12 @@ use Illuminate\Http\Request;
 class AlunoController extends Controller
 {
 
-    public function index() {
-        $alunos = Aluno::pluck('alu_nome', 'id');
-        $agendamentos = Agendamento::with('aluno')->get();
-        return view('welcome', compact('agendamentos', 'alunos'));
+    // public function index() {
+    //     $alunos = Aluno::pluck('alu_nome', 'id');
+    //     $agendamentos = Agendamento::with('aluno')->get();
+    //     return view('welcome', compact('agendamentos', 'alunos'));
         
-    }
+    // }
 
     public function exibir() {
 
@@ -89,6 +89,11 @@ class AlunoController extends Controller
 
         $aluno = Aluno::findOrFail($id);
         $avaliacao = $aluno->avaliacoes()->latest()->first();
+
+        if (!$avaliacao) {
+            // Se não existir, defina $avaliacao como null
+            $avaliacao = null;
+        }
 
         return view("events.editar-aluno", compact('aluno', 'avaliacao'));
     }

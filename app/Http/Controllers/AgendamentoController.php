@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Agendamento;
 use App\Models\Aluno;
+use App\Models\Horario;
+use Carbon\Carbon;
 
 class AgendamentoController extends Controller
 {
@@ -13,77 +15,58 @@ class AgendamentoController extends Controller
     {
         $agendamentos = Agendamento::with('aluno')->get();
         $alunos = Aluno::all();
-        return view('welcome', compact('agendamentos', 'alunos'));
-    }
-
-    // public function show($id)
-    // {
-    //      // Recupera o agendamento com base no ID fornecido
-    //      $agendamento = Agendamento::findOrFail($id);
-
-    //      // Recupera os alunos associados a este agendamento
-    //      $alunos = Aluno::whereHas('agendamento', function ($query) use ($agendamento) {
-    //          $query->whereJsonContains('age_horario->dia', $agendamento->age_horario['dia'])
-    //              ->where('age_horario->horario', $agendamento->age_horario['horario']);
-    //      })->get();
- 
-    //      // Retorna a visão com os alunos associados ao agendamento
-    //      return view('welcome', compact('agendamento', 'alunos'));
-    // }
-
-    public function update(Request $request, Agendamento $agendamento)
-    {
-        // Obtém os dados do formulário
-        $agendamentos = $request->input('agendamento');
-
-        // Percorre os agendamentos e os salva no banco de dados
-        foreach ($agendamentos as $horaDia => $alunoId) {
-            list($dia, $hora) = explode(', ', $horaDia);
-            $agendamento = Agendamento::where('age_horario', $dia . ', ' . $hora . ':00')->first();
-
-            if ($agendamento) {
-                $agendamento->alu_id = $alunoId;
-                $agendamento->save();
-            } else {
-                Agendamento::create([
-                    'age_horario' => $dia . ', ' . $hora . ':00',
-                    'alu_id' => 1,
-                    'age_ativo' => true
-                ]);
-            }
-        }
-
-        // $dias_semana = [
-        //     1 => 'Segunda-feira',
-        //     2 => 'Terça-feira',
-        //     3 => 'Quarta-feira',
-        //     4 => 'Quinta-feira',
-        //     5 => 'Sexta-feira'
-        // ];
-
-        // $agendamento = Agendamento::firstOrNew(['alu_id' => $request->alu_id]);
-        // $agendamento->alu_id = 1;
-        // $agendamento->age_ativo = true;
-        // $agendamento->age_horario = 7;
-        // $agendamento->age_dia = $dias_semana;
-        // $agendamento->save();
-
-        return redirect()->back()->with('success', 'Agendamento atualizado com sucesso!');
+        $days = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira'];
+        $hours = range(8, 20);
+        return view('welcome', compact('agendamentos', 'alunos', 'days', 'hours'));
     }
 
     public function store(Request $request)
     {
-        // Validação dos dados (opcional)
-        $request->validate([
-            'alu_id' => 'required|exists:alunos,id',
-        ]);
+        $existingScheduling = Agendamento::where('alu_id', $request->alunos)->exists();
 
-        // Salvar ou atualizar o agendamento
-        $agendamento = Agendamento::firstOrNew(['id_aluno' => $request->alu_id]);
+        // Se já existir, retorne um redirecionamento com um erro
+        if ($existingScheduling) {
+            return redirect()->back()->with('alert', 'O aluno já está agendado em outro dia e/ou horário.');
+        }
+
+        // Verifica se já existem 7 eventos nesta célula de tempo
+        $existingSchedulingInCell = Agendamento::where('age_day', $request->age_day)->where('age_time', $request->age_time)->count();
+
+        // Se já houver 7 eventos, retorne um redirecionamento com um erro
+        if ($existingSchedulingInCell >= 7) {
+            return redirect()->back()->with('alert', 'Não é permitido mais de 7 alunos por célula.');
+        }
+
+        // Salvar o agendamento
+        $agendamento = new Agendamento;
         $agendamento->alu_id = $request->alu_id;
-        $agendamento->age_ativo = true; // Você pode definir como necessário
+        $agendamento->age_day = $request->age_day;
+        $agendamento->age_time = $request->age_time;
         $agendamento->save();
 
-        return response()->json(['success' => true]);
+        return redirect()->back()->with('success', 'Evento adicionado com sucesso!');
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Obtém os dados do formulário
+        $agendamento = Agendamento::find($id);
+        if (!$agendamento) {
+            return redirect()->back()->with('alert', 'Evento não encontrado!');
+        }
+
+        $agendamento->age_day = $request->input('age_day');
+        $agendamento->age_time = $request->input('age_time');
+        $agendamento->save();
+
+
+        return redirect()->back()->with('success', 'Agendamento atualizado com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        Agendamento::findOrFail($id)->delete();
+
+        return redirect()->back()->with('success', 'Agendamento excluído!');
     }
 }

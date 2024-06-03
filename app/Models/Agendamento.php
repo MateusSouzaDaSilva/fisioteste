@@ -9,17 +9,20 @@ class Agendamento extends Model
 {
     use HasFactory;
 
-    protected $table = 'agendamento';
+    protected $table = 'agendamentos';
 
-    protected $fillable = ['age_horario', 'age_ativo', 'age_dtcad', 'age_dtalt', 'age_dia']; // Campos preenchíveis
+    protected $fillable = ['alu_id', 'day', 'time']; // Campos preenchíveis
 
-    protected $casts = [
-        'age_horario' => 'json'
-    ];
+
 
 
     public function aluno()
     {
         return $this->belongsTo(Aluno::class, 'alu_id');
+    }
+
+    public function horario()
+    {
+        return $this->belongsTo(Horario::class, 'horario_id');
     }
 }
