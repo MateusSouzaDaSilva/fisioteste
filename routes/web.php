@@ -78,6 +78,4 @@ Route::middleware([
 
     Route::get('/agendamentos/index', [AgendamentoController::class, 'index'])->name('agendamentos.index');
     Route::post('/agendamentos', [AgendamentoController::class, 'storae'])->name('agendamentos.store');
-    
-
 });

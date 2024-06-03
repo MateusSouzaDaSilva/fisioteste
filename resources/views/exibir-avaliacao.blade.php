@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Histórico de doença atual: </label>
-                        <textarea type="text" class="form-control @error('hda') is-invalid @enderror" id="ava_hda" name="ava_hda" placeholder="Histórico de doença atual">{{ $avaliacao->ava_HDA }}</textarea>
+                        <textarea type="text" class="form-control @error('hda') is-invalid @enderror" id="ava_hda" name="ava_hda" placeholder="Histórico de doença atual">{{ $avaliacao->ava_hda }}</textarea>
                         @error('hda')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Histórico patológico pregresso: </label>
-                        <textarea type="text" class="form-control @error('hpp') is-invalid @enderror" id="ava_hpp" name="ava_hpp" placeholder="Histórico patológico pregresso">{{ $avaliacao->ava_HPP }}</textarea>
+                        <textarea type="text" class="form-control @error('hpp') is-invalid @enderror" id="ava_hpp" name="ava_hpp" placeholder="Histórico patológico pregresso">{{ $avaliacao->ava_hpp }}</textarea>
                         @error('hpp')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
