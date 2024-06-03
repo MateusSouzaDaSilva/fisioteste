@@ -26,13 +26,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    // Route::get('/', function () {
-    //     return view('welcome');
-    // })->name('welcome');
 
-    Route::get('/lista-alunos', [AlunoController::class,'exibir'])->name('exibir-alunos');
-    
-    Route::get('/lista-alunos/cadastrar', [AlunoController::class,'create'])->name('cadastrar-aluno');
+    Route::get('/lista-alunos', [AlunoController::class, 'exibir'])->name('exibir-alunos');
+
+    Route::get('/lista-alunos/create', [AlunoController::class, 'create'])->name('cadastrar-aluno');
 
     Route::get('/aluno/edit/{id}', [AlunoController::class, 'edit']);
 
@@ -40,13 +37,9 @@ Route::middleware([
 
     Route::delete('/aluno/{id}', [AlunoController::class, 'destroy']);
 
-    Route::post('/aluno/salvar', [AlunoController::class, 'store'])->name('salvarAluno');
+    Route::post('/aluno/save', [AlunoController::class, 'store'])->name('salvarAluno');
 
     Route::post('/aluno/{id}/pagou', [AlunoController::class, 'pagou'])->name('aluno.pagou');
-
-    Route::get('/', [AgendamentoController::class, 'weeklySchedule'])->name('agendamentos.weekly_schedule');
-    Route::post('horarios/{horario}/allocate', [AgendamentoController::class, 'allocate'])->name('agendamentos.allocate');
-
 });
 
 Route::middleware([
@@ -57,25 +50,28 @@ Route::middleware([
 
     Route::get('/avaliacao/{id}', [AvaliacaoController::class, 'exibirAluno']);
 
-     Route::post('/avaliacao/salvar', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
+    Route::post('/avaliacao/salvar', [AvaliacaoController::class, 'store'])->name('salvarAvaliacao');
 
-     Route::get('/avaliacao/edit/{alunoId}/{avaliacaoId}', [AvaliacaoController::class, 'edit'])->name('avaliacao.edit');
+    Route::get('/avaliacao/edit/{alunoId}/{avaliacaoId}', [AvaliacaoController::class, 'edit'])->name('avaliacao.edit');
 
-     Route::delete('/avaliacao/deletar/{avaliacaoId}', [AvaliacaoController::class, 'destroy']);
-    
-     Route::put('/avaliacao/update/{avaliacaoId}', [AvaliacaoController::class, 'update'])->name('avaliacao.update');
+    Route::delete('/avaliacao/deletar/{avaliacaoId}', [AvaliacaoController::class, 'destroy']);
 
-    Route::get('/mensalidade', function () {
+    Route::put('/avaliacao/update/{avaliacaoId}', [AvaliacaoController::class, 'update'])->name('avaliacao.update');
+});
 
-        $alunos = Aluno::all(); 
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
 
-        return view('mensalidade', ['alunos' => $alunos]);
-    })->name('Lista de mensalidade');
+    Route::get('/', [AgendamentoController::class, 'index']);
 
-    // Route::get('/', [AgendamentoController::class, 'show']);
-    
-    Route::put('/atualizar-agendamento', [AgendamentoController::class, 'update'])->name('agendamentos.update');
+    Route::post('/agendamento/save', [AgendamentoController::class, 'store']);
 
-    Route::get('/agendamentos/index', [AgendamentoController::class, 'index'])->name('agendamentos.index');
-    Route::post('/agendamentos', [AgendamentoController::class, 'storae'])->name('agendamentos.store');
+    Route::delete('/agendamento/delete/{id}', [AgendamentoController::class, 'destroy']);
+
+    Route::put('/agendamento/update/{id}', [AgendamentoController::class, 'update']);
+
+    Route::resource('agendamento', AgendamentoController::class);
 });

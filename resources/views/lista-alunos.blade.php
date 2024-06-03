@@ -6,7 +6,7 @@
     <h1>Lista de alunos</h1>
 </div>
 <div class="btn-area">
-    <a href="/lista-alunos/cadastrar" class="btn-fisio btn-float"><i class="bi bi-plus-lg"></i> Aluno</a>
+    <a href="/lista-alunos/create" class="btn-fisio btn-float"><i class="bi bi-plus-lg"></i> Aluno</a>
 </div>
 
 

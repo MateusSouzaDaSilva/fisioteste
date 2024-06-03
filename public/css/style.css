@@ -87,29 +87,65 @@ header {
 
 /* Agendamento */
 
-#tb-agenda {
-    padding: 30px 100px;
+.container-class {
+    background-color: #d0d0d0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 767px) {
-    #tb-agenda {
-        padding: 30px 0px;
-    }
-
-    /* .grid-lay {
-        width: 75%;
-        height: 75%;
-    } */
+.h1-class {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-.timeslot {
-    border: 1px solid #dee2e6;
+.table-class {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.th-class,
+.td-class {
+    border: 1px solid #ddd;
     padding: 10px;
-    height: 150px;
-    overflow-y: auto;
+    text-align: left;
+    vertical-align: top;
 }
-.full {
-    background-color: #ffcccc;
+
+.th-class {
+    background-color: #c7a6db;
+    font-weight: bold;
+}
+
+.event-class {
+    background-color: #f5f5f5;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-primary-class {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-warning-class {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-class {
+    margin-right: 5px;
+}
+
+.modal-dialog-class {
+    max-width: 80%;
+}
+
+.modal-content-class {
+    border-radius: 10px;
 }
 
 /* Lista de alunos */

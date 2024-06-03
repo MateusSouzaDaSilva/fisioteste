@@ -61,10 +61,6 @@
                         <img src="{{ asset('img/icons/register_logo.png') }}" alt="Register Logo">
                         <a class="nav-link" href="/lista-alunos">Alunos</a>
                     </li>
-                    <li class="nav-item">
-                        <img src="{{ asset('img/icons/money_logo.png') }}" alt="Money Logo">
-                        <a class="nav-link" href="/mensalidade">Mensalidade</a>
-                    </li>
                 </ul>
             </div>
         </header>

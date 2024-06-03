@@ -11,7 +11,7 @@ class Agendamento extends Model
 
     protected $table = 'agendamentos';
 
-    protected $fillable = ['alu_id', 'horario_id', 'age_ativo']; // Campos preenchíveis
+    protected $fillable = ['alu_id', 'day', 'time']; // Campos preenchíveis
 
 
 
