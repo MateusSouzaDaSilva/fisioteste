@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label for="time">Hora:</label>
                             <select name="age_time" id="age_time" class="form-control" required>
-                                @foreach (range(8, 20) as $hour)
+                                @foreach (range(7, 20) as $hour)
                                 @if (!in_array($hour, [11, 12, 13]))
                                 <option value="{{ sprintf('%02d:00:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
                                 @endif
@@ -121,7 +121,7 @@
                                 <option value="" disabled selected>Selecione um evento</option>
                                 @foreach ($agendamentos as $agendamento)
                                 <option value="{{ $agendamento->id }}">
-                                    {{ $agendamento->aluno->alu_nome }} - {{ $agendamento->age_day }} - {{ $agendamento->age_time }}
+                                    {{ $agendamento->aluno->alu_nome }} {{ $agendamento->aluno->alu_sobrenome }}- {{ $agendamento->age_day }} - {{ $agendamento->age_time }}
                                 </option>
                                 @endforeach
                             </select>
@@ -139,7 +139,7 @@
                         <div class="form-group">
                             <label for="time">Hora:</label>
                             <select name="age_time" id="age_time" class="form-control" required>
-                                @foreach (range(8, 20) as $hour)
+                                @foreach (range(7, 20) as $hour)
                                 @if (!in_array($hour, [11, 12, 13]))
                                 <option value="{{ sprintf('%02d:00:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
                                 @endif
@@ -153,7 +153,7 @@
                     <form id="deleteEventForm" action="" method="post" onsubmit="return confirmarExclusao()">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-primary-class" value="E">
+                        <button type="submit" class="btn btn-danger btn-primary-class">
                             <i class="bi bi-trash3-fill"></i>Excluir
                         </button>
                     </form>
@@ -170,7 +170,7 @@
             $('#selectedEvent').change(function() {
                 var eventId = $(this).val();
                 $('#editEventForm').attr('action', '/agendamento/' + eventId);
-                $('#deleteEventForm').attr('action', '/agendamento/excluir/' + eventId);
+                $('#deleteEventForm').attr('action', '/agendamento/delete/' + eventId);
             });
         });
 
