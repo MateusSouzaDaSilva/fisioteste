@@ -4,7 +4,7 @@
 
 
 <div id="aluno-register-container" class="col-md-6 offset-md-3">
-    <h1>Edite os dados de {{ $aluno->alu_nome }}</h1>
+    <h1>Edite os dados de {{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}</h1>
     <form action="/aluno/update/{{ $aluno->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -14,6 +14,16 @@
 
             @error('nome')
             <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+        </div>
+        <div class="form-group">
+            <label for="title" id="form-label">Sobrenome do aluno:</label>
+            <input type="text" class="form-control @error('sobrenome') is-invalid @enderror" id="sobrenome" name="sobrenome"
+                placeholder="Sobrenome do aluno" value="{{ $aluno->alu_sobrenome }}">
+
+            @error('sobrenome')
+                <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
         </div>
@@ -76,10 +86,10 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <input type="submit" value="Atualizar aluno" class="btn btn-primary registrar mb-5" id="send">
         <a href="/avaliacao/{{ $aluno->id }}" class="btn-fisio"> Adicionar avaliação</a>
         @if($avaliacao)
         <a href="/avaliacao/edit/{{ $aluno->id }}/{{ $avaliacao->id }}" class="btn-fisio">Editar avaliação</a>
+        <input type="submit" value="Atualizar aluno" class="btn-fisio" id="send">
         @endif
     </form>
 </div>

@@ -61,8 +61,19 @@
                         <img src="{{ asset('img/icons/register_logo.png') }}" alt="Register Logo">
                         <a class="nav-link" href="/lista-alunos">Alunos</a>
                     </li>
+                    <li class="nav-item">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Sair
+                        </a>
+                    </li>
                 </ul>
             </div>
+            
+            
         </header>
 
         <main>

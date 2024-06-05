@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\auth\logoutController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\AgendamentoController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 use App\Models\Aluno;
 /*
@@ -75,3 +77,5 @@ Route::middleware([
 
     Route::resource('agendamento', AgendamentoController::class);
 });
+
+Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
