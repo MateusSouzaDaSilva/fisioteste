@@ -45,11 +45,11 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary btn-primary-class" data-toggle="modal" data-target="#createEventModal">
-        Adicionar Evento
+    <button type="button" class="btn-fisio" data-toggle="modal" data-target="#createEventModal">
+        Criar Agendamento
     </button>
-    <button type="button" class="btn btn-warning btn-warning-class" data-toggle="modal" data-target="#editEventModal">
-        Editar Evento
+    <button type="button" class="btn-fisio-edit" data-toggle="modal" data-target="#editEventModal">
+        Editar Agendamento
     </button>
 
     <!-- Modal de Criação -->
@@ -57,7 +57,7 @@
         <div class="modal-dialog modal-dialog-class">
             <div class="modal-content modal-content-class">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createEventModalLabel">Adicionar Evento</h5>
+                    <h5 class="modal-title" id="createEventModalLabel">Criar Agendamento</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -86,15 +86,15 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="eventName">Nome do Evento:</label>
+                            <label for="eventName">Nome do Aluno:</label>
                             <select name="alu_id" id="alu_id" class="form-control" required>
-                                <option value="" disabled selected>Selecione o evento</option>
+                                <option value="" disabled selected>Selecione o Aluno</option>
                                 @foreach ($alunos as $aluno)
                                 <option value="{{ $aluno->id }}">{{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-primary-class">Adicionar</button>
+                        <button type="submit" class="btn btn-primary btn-primary-class btn-add">Adicionar</button>
                     </form>
                 </div>
             </div>
@@ -106,7 +106,7 @@
         <div class="modal-dialog modal-dialog-class">
             <div class="modal-content modal-content-class">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editEventModalLabel">Editar Evento</h5>
+                    <h5 class="modal-title" id="editEventModalLabel">Editar Agendamento</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -116,9 +116,9 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="selectedEvent">Selecionar Evento:</label>
+                            <label for="selectedEvent">Selecionar Aluno:</label>
                             <select name="selectedEvent" id="selectedEvent" class="form-control" required>
-                                <option value="" disabled selected>Selecione um evento</option>
+                                <option value="" disabled selected>Selecione um aluno</option>
                                 @foreach ($agendamentos as $agendamento)
                                 <option value="{{ $agendamento->id }}">
                                     {{ $agendamento->aluno->alu_nome }} {{ $agendamento->aluno->alu_sobrenome }}- {{ $agendamento->age_day }} - {{ $agendamento->age_time }}
@@ -146,6 +146,7 @@
                                 @endforeach
                             </select>
                         </div>
+                      <div class="edit-buttons d-flex">
                         <button type="submit" class="btn btn-primary btn-primary-class">Salvar</button>
                     </form>
 
@@ -157,6 +158,8 @@
                             <i class="bi bi-trash3-fill"></i>Excluir
                         </button>
                     </form>
+                      </div>
+                        
                 </div>
             </div>
         </div>

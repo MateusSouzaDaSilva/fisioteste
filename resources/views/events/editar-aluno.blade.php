@@ -10,7 +10,7 @@
         @method('PUT')
         <div class="form-group">
             <label for="title" id="form-label">Nome do aluno:</label>
-            <input type="text" class="form-control @error('nome') is-invalid @enderror" id="alu_nome" name="alu_nome" placeholder="Nome do aluno" value="{{ $aluno->alu_nome }}">
+            <input type="text" class="form-control @error('nome') is-invalid @enderror" id="alu_nome" name="alu_nome" placeholder="Nome do aluno" value="{{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}">
 
             @error('nome')
             <div class="alert alert-danger">{{ $message }}</div>

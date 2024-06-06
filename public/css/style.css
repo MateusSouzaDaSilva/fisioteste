@@ -129,6 +129,7 @@ header {
 .btn-primary-class {
     background-color: #007bff;
     border-color: #007bff;
+    margin-right: 10px;
 }
 
 .btn-warning-class {
@@ -147,6 +148,11 @@ header {
 .modal-content-class {
     border-radius: 10px;
 }
+
+.edit-buttons, .btn-add {
+    margin-top: 10px;
+}
+
 
 /* Lista de alunos */
 
@@ -179,6 +185,16 @@ header {
 
 .btn-fisio {
     background-color: #9d59c8;
+    border-radius: 5px;
+    padding: 0.75rem 0.375rem;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    transition: 0.2s all;
+}
+
+.btn-fisio-edit {
+    background-color: #008B8B;
     border-radius: 5px;
     padding: 0.75rem 0.375rem;
     color: #fff;
