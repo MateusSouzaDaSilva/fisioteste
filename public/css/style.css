@@ -87,8 +87,12 @@ header {
 
 /* Agendamento */
 
+.agendamento {
+    margin-bottom: 50px;
+}
+
 .container-class {
-    background-color: #d0d0d0;
+    background-color: #c7a6db;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -157,7 +161,7 @@ header {
 /* Lista de alunos */
 
 .title-alunos {
-    padding-top: 15px;
+    padding-top: 30px;
 }
 
 .aluno {
@@ -191,6 +195,16 @@ header {
     cursor: pointer;
     box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
     transition: 0.2s all;
+}
+
+.btn-fisio-save {
+    background-color: #9d59c8;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    transition: 0.2s all;
+    width: 5vw;
 }
 
 .btn-fisio-edit {
@@ -317,6 +331,20 @@ td {
     color: #dc3545;
 }
 
+/* Editar aluno */
+.dados {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.btn-list {
+    margin-top: 20px;
+}
+
+.add-aluno {
+    margin-top: 30px;
+}
+
 /* Footer */
 
 footer {
@@ -345,21 +373,4 @@ footer p {
     }
 }
 
-/* .tabelaEditavel {
-    border:solid 1px;
-    width:100%
-}
 
-.tabelaEditavel td {
-    border:solid 1px;
-}
-
-.tabelaEditavel .celulaEmEdicao {
-    padding: 0;
-}
-
-.tabelaEditavel .celulaEmEdicao input[type=text]{
-    width:100%;
-    border:0;
-    background-color:rgb(255,253,210);
-} */
