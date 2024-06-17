@@ -3,14 +3,14 @@
 @section('content')
 
 
-<div id="aluno-register-container" class="col-md-6 offset-md-3">
+<div id="aluno-register-container" class="col-md-6 offset-md-3 dados">
     <h1>Edite os dados de {{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}</h1>
     <form action="/aluno/update/{{ $aluno->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
             <label for="title" id="form-label">Nome do aluno:</label>
-            <input type="text" class="form-control @error('nome') is-invalid @enderror" id="alu_nome" name="alu_nome" placeholder="Nome do aluno" value="{{ $aluno->alu_nome }}">
+            <input type="text" class="form-control @error('nome') is-invalid @enderror" id="alu_nome" name="alu_nome" placeholder="Nome do aluno" value="{{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}">
 
             @error('nome')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -86,11 +86,13 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <a href="/avaliacao/{{ $aluno->id }}" class="btn-fisio"> Adicionar avaliação</a>
+        <div class="btn-list">
+            <a href="/avaliacao/{{ $aluno->id }}" class="btn-fisio"> Adicionar avaliação</a>
         @if($avaliacao)
-        <a href="/avaliacao/edit/{{ $aluno->id }}/{{ $avaliacao->id }}" class="btn-fisio">Editar avaliação</a>
+        <a href="/avaliacao/edit/{{ $aluno->id }}/{{ $avaliacao->id }}" class="btn-fisio">Exibir avaliação</a>
         <input type="submit" value="Atualizar aluno" class="btn-fisio" id="send">
         @endif
+        </div>
     </form>
 </div>
 

@@ -2,7 +2,7 @@
 @section('title', 'Fisiolates')
 @section('content')
 
-<div id="aluno-register-container" class="col-md-8 offset-md-2">
+<div id="aluno-register-container" class="col-md-8 offset-md-2 dados">
     <h1>Ficha de avaliação: {{ $aluno->alu_nome }} </h1>
 
     <!-- Abas de navegação -->
@@ -131,12 +131,14 @@
                 @enderror
             </div>
 
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </form>
-                <form action="/avaliacao/deletar/{{ $avaliacao->id }}" method="post" onsubmit="return confirmarExclusao()">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger" value="E"><i class="bi bi-trash3-fill"></i>Excluir</button>
+               <div class="btn-list d-flex">
+                <button type="submit" class="btn-fisio-save">Salvar</button>
+            </form>
+            <form action="/avaliacao/deletar/{{ $avaliacao->id }}" method="post" onsubmit="return confirmarExclusao()">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger ms-1" value="E"><i class="bi bi-trash3-fill"></i>Excluir</button>
+               </div>
             </form>
             </div>
         @endforeach

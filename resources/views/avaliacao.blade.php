@@ -4,7 +4,7 @@
 
 
 
-    <div id="aluno-register-container" class="col-md-6 offset-md-3">
+    <div id="aluno-register-container" class="col-md-6 offset-md-3 dados">
         <h1>Ficha de avaliação: {{ $aluno->alu_nome }} </h1>
 
         
@@ -141,7 +141,7 @@
                 @enderror
             </div>
 
-            <input type="submit" value="Adicionar avaliação" class="btn btn-primary registrar mb-5" id="send">
+            <input type="submit" value="Adicionar avaliação" class="btn-fisio registrar mb-5" id="send">
     </div>
 
 @endsection
