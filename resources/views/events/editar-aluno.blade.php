@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Editando: ' . $aluno->alu_nome)
+@section('title', 'Editando: ' . $aluno->alu_nome . ' ' . $aluno->alu_sobrenome)
 @section('content')
 
 
@@ -10,7 +10,7 @@
         @method('PUT')
         <div class="form-group">
             <label for="title" id="form-label">Nome do aluno:</label>
-            <input type="text" class="form-control @error('nome') is-invalid @enderror" id="alu_nome" name="alu_nome" placeholder="Nome do aluno" value="{{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}">
+            <input type="text" class="form-control @error('nome') is-invalid @enderror" id="alu_nome" name="alu_nome" aluno" value="{{ $aluno->alu_nome }}">
 
             @error('nome')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -19,8 +19,8 @@
         </div>
         <div class="form-group">
             <label for="title" id="form-label">Sobrenome do aluno:</label>
-            <input type="text" class="form-control @error('sobrenome') is-invalid @enderror" id="sobrenome" name="sobrenome"
-                placeholder="Sobrenome do aluno" value="{{ $aluno->alu_sobrenome }}">
+            <input type="text" class="form-control @error('sobrenome') is-invalid @enderror" id="alu_sobrenome" name="alu_sobrenome"
+             e do aluno" value="{{ $aluno->alu_sobrenome }}">
 
             @error('sobrenome')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="title" id="form-label">CPF:</label>
-            <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="alu_cpf" name="alu_cpf" placeholder="CPF do aluno" maxlength="14" value="{{ $aluno->alu_cpf }}">
+            <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="alu_cpf" name="alu_cpf" luno" maxlength="14" value="{{ $aluno->alu_cpf }}">
 
             @error('cpf')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -37,7 +37,7 @@
         </div>
         <div class="form-group">
             <label for="title" id="form-label">Endereço:</label>
-            <input type="text" class="form-control @error('endereco') is-invalid @enderror" id="alu_end" name="alu_end" placeholder="Endereço do aluno" value="{{ $aluno->alu_end }}">
+            <input type="text" class="form-control @error('endereco') is-invalid @enderror" id="alu_end" name="alu_end"  do aluno" value="{{ $aluno->alu_end }}">
 
             @error('endereco')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -45,7 +45,7 @@
         </div>
         <div class="form-group">
             <label for="title" id="form-label">Bairro:</label>
-            <input type="text" class="form-control @error('bairro') is-invalid @enderror" id="alu_bairro" name="alu_bairro" placeholder="Bairro do aluno" value="{{ $aluno->alu_bairro }}">
+            <input type="text" class="form-control @error('bairro') is-invalid @enderror" id="alu_bairro" name="alu_bairro" o aluno" value="{{ $aluno->alu_bairro }}">
 
             @error('bairro')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -53,7 +53,7 @@
         </div>
         <div class="form-group">
             <label for="title" id="form-label">Cidade:</label>
-            <input type="text" class="form-control @error('cidade') is-invalid @enderror" id="alu_cidade" name="alu_cidade" placeholder="Cidade do aluno" value="{{ $aluno->alu_cidade }}">
+            <input type="text" class="form-control @error('cidade') is-invalid @enderror" id="alu_cidade" name="alu_cidade" o aluno" value="{{ $aluno->alu_cidade }}">
 
             @error('cidade')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -61,11 +61,11 @@
         </div>
         <div class="form-group">
             <label for="title" id="form-label">Telefone:</label>
-            <input type="text" class="form-control" id="alu_fone" name="alu_fone" placeholder="Telefone residencial do aluno" maxlength="14" value="{{ $aluno->alu_fone }}">
+            <input type="text" class="form-control" id="alu_fone" name="alu_fone"  residencial do aluno" maxlength="14" value="{{ $aluno->alu_fone }}">
         </div>
         <div class="form-group">
             <label for="title" id="form-label">Celular:</label>
-            <input type="text" class="form-control @error('celular') is-invalid @enderror" id="alu_celular" name="alu_celular" placeholder="Celular" maxlength="15" value="{{ $aluno->alu_celular }}">
+            <input type="text" class="form-control @error('celular') is-invalid @enderror" id="alu_celular" name="alu_celular"  maxlength="15" value="{{ $aluno->alu_celular }}">
 
             @error('celular')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -80,7 +80,7 @@
         </div>
         <div class="form-group">
             <label for="title" id="form-label">Data de nascimento:</label>
-            <input type="date" class="form-control @error('dtnasc') is-invalid @enderror" id="alu_dtnasc" name="alu_dtnasc" placeholder="Data de nascimento" value="{{ $aluno->alu_dtnasc }}">
+            <input type="date" class="form-control @error('dtnasc') is-invalid @enderror" id="alu_dtnasc" name="alu_dtnasc" value="{{ $aluno->alu_dtnasc }}">
 
             @error('dtnasc')
             <div class="alert alert-danger">{{ $message }}</div>

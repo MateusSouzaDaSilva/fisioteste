@@ -22,7 +22,7 @@ class AlunoController extends Controller
 
     public function exibir() {
 
-        $currentDate = \Carbon\Carbon::now();
+        $currentDate = Carbon::now();
     
         $validAlunos = Aluno::where('alu_dtvencimento', '>=', $currentDate)->get();
         $expiredAlunos = Aluno::where('alu_dtvencimento', '<', $currentDate)->get();

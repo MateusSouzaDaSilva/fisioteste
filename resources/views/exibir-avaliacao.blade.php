@@ -1,9 +1,9 @@
 @extends('layouts.main')
-@section('title', 'Fisiolates')
+@section('title', 'Exibindo: ' . $aluno->alu_nome . ' ' . $aluno->alu_sobrenome)
 @section('content')
 
 <div id="aluno-register-container" class="col-md-8 offset-md-2 dados">
-    <h1>Ficha de avaliação: {{ $aluno->alu_nome }} </h1>
+    <h1>Ficha de avaliação: {{ $aluno->alu_nome }} {{ $aluno->alu_sobrenome }}</h1>
 
     <!-- Abas de navegação -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Queixa principal: </label>
-                        <textarea type="text" class="form-control @error('queixa') is-invalid @enderror" id="ava_queixa_principal" name="ava_queixa_principal" placeholder="Queixa principal">{{ $avaliacao->ava_queixa_principal }}</textarea>
+                        <textarea type="text" class="form-control @error('queixa') is-invalid @enderror" id="ava_queixa_principal" name="ava_queixa_principal">{{ $avaliacao->ava_queixa_principal }}</textarea>
                         @error('queixa')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Histórico de doença atual: </label>
-                        <textarea type="text" class="form-control @error('hda') is-invalid @enderror" id="ava_hda" name="ava_hda" placeholder="Histórico de doença atual">{{ $avaliacao->ava_hda }}</textarea>
+                        <textarea type="text" class="form-control @error('hda') is-invalid @enderror" id="ava_hda" name="ava_hda">{{ $avaliacao->ava_hda }}</textarea>
                         @error('hda')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Histórico patológico pregresso: </label>
-                        <textarea type="text" class="form-control @error('hpp') is-invalid @enderror" id="ava_hpp" name="ava_hpp" placeholder="Histórico patológico pregresso">{{ $avaliacao->ava_hpp }}</textarea>
+                        <textarea type="text" class="form-control @error('hpp') is-invalid @enderror" id="ava_hpp" name="ava_hpp">{{ $avaliacao->ava_hpp }}</textarea>
                         @error('hpp')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -59,7 +59,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Exame complementar:</label>
-                        <textarea type="text" class="form-control @error('complementar') is-invalid @enderror" id="ava_ex_complementar" name="ava_ex_complementar" placeholder="Exame complementar">{{ $avaliacao->ava_ex_complementar }}</textarea>
+                        <textarea type="text" class="form-control @error('complementar') is-invalid @enderror" id="ava_ex_complementar" name="ava_ex_complementar">{{ $avaliacao->ava_ex_complementar }}</textarea>
                         @error('complementar')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -67,7 +67,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Inspeção:</label>
-                        <textarea type="text" class="form-control @error('inspecao') is-invalid @enderror" id="ava_inspecao" name="ava_inspecao" placeholder="Inspeção">{{ $avaliacao->ava_inspecao }}</textarea>
+                        <textarea type="text" class="form-control @error('inspecao') is-invalid @enderror" id="ava_inspecao" name="ava_inspecao">{{ $avaliacao->ava_inspecao }}</textarea>
                         @error('inspecao')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -75,7 +75,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Palpação:</label>
-                        <textarea type="text" class="form-control @error('palpacao') is-invalid @enderror" id="ava_palpacao" name="ava_palpacao" placeholder="Palpação">{{ $avaliacao->ava_palpacao }}</textarea>
+                        <textarea type="text" class="form-control @error('palpacao') is-invalid @enderror" id="ava_palpacao" name="ava_palpacao">{{ $avaliacao->ava_palpacao }}</textarea>
                         @error('palpacao')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -83,7 +83,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Teste articular:</label>
-                        <textarea type="text" class="form-control @error('articular') is-invalid @enderror" id="ava_teste_articular" name="ava_teste_articular" placeholder="Teste articular">{{ $avaliacao->ava_teste_articular }}</textarea>
+                        <textarea type="text" class="form-control @error('articular') is-invalid @enderror" id="ava_teste_articular" name="ava_teste_articular">{{ $avaliacao->ava_teste_articular }}</textarea>
                         @error('articular')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -91,7 +91,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Teste muscular:</label>
-                        <textarea type="text" class="form-control @error('muscular') is-invalid @enderror" id="ava_teste_muscular" name="ava_teste_muscular" placeholder="Teste muscular">{{ $avaliacao->ava_teste_muscular }}</textarea>
+                        <textarea type="text" class="form-control @error('muscular') is-invalid @enderror" id="ava_teste_muscular" name="ava_teste_muscular">{{ $avaliacao->ava_teste_muscular }}</textarea>
                         @error('muscular')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -99,7 +99,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Nome do médico:</label>
-                        <input type="text" class="form-control @error('medico') is-invalid @enderror" id="ava_medico" name="ava_medico" placeholder="Nome do médico" value="{{ $avaliacao->ava_medico }}">
+                        <input type="text" class="form-control @error('medico') is-invalid @enderror" id="ava_medico" name="ava_medico" value="{{ $avaliacao->ava_medico }}">
                         @error('medico')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -107,7 +107,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">CRM:</label>
-                        <input type="text" class="form-control @error('crm') is-invalid @enderror" id="ava_crm" name="ava_crm" placeholder="CRM" value="{{ $avaliacao->ava_crm }}">
+                        <input type="text" class="form-control @error('crm') is-invalid @enderror" id="ava_crm" name="ava_crm" value="{{ $avaliacao->ava_crm }}">
                         @error('crm')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -115,7 +115,7 @@
 
                     <div class="form-group">
                         <label for="title" id="form-label">Especialidade:</label>
-                        <input type="text" class="form-control @error('especialidade') is-invalid @enderror" id="ava_especialidadev" name="ava_especialidade" placeholder="Especialidade" value="{{ $avaliacao->ava_especialidade }}">
+                        <input type="text" class="form-control @error('especialidade') is-invalid @enderror" id="ava_especialidadev" name="ava_especialidade" value="{{ $avaliacao->ava_especialidade }}">
                         @error('especialidade')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -123,7 +123,7 @@
 
                     <div class="form-group">
                 <label for="title" id="form-label">Telefone do médico:</label>
-                <input type="text" class="form-control @error('medfone') is-invalid @enderror" id="ava_med_fone" name="ava_med_fone" placeholder="medfone"
+                <input type="text" class="form-control @error('medfone') is-invalid @enderror" id="ava_med_fone" name="ava_med_fone"
                     value="{{ $avaliacao->ava_med_fone }}">
 
                     @error('medfone')
@@ -151,4 +151,18 @@
     function confirmarExclusao() {
         return confirm('Tem certeza que deseja excluir esta avaliação?');
     }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var crmInput = document.getElementById('ava_crm');
+
+        VMasker(crmInput).maskPattern('99.999');
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var celularInput = document.getElementById('ava_med_fone');
+
+        VMasker(celularInput).maskPattern('(99) 99999-9999');
+    });
+
 </script>
