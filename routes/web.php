@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\AgendamentoController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
