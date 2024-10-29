@@ -10,5 +10,5 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-    ],
+    ], publicPath: '/fisioteste/public/build'
 });
